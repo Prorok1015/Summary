@@ -15,7 +15,7 @@ ul.nav{
 ul.nav a {
     display: inline-block;
     width: 5em;
-    padding:10px;
+    padding:5px;
     margin-bottom: 10px; 
     margin-top: 5px;
     margin-left: 2px;
@@ -71,6 +71,7 @@ html, body {
 .main{
     min-width: 100%;
     min-height: 100%;
+    padding-top: 10px;
     padding-bottom: 60px;
     position: relative;
     background-color: rgba(143, 255, 240, 0.651);

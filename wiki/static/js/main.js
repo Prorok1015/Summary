@@ -1,4 +1,4 @@
 
-function click(){
-    alert(1);
+function f(){
+    console.log(1);
 }

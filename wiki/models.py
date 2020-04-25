@@ -22,19 +22,19 @@ class Sites(models.Model):
     
 class Page(models.Model):   
     title = models.CharField(max_length=60)
-    url = models.ForeignKey('Sites', on_delete=models.CASCADE)
+    url = models.ForeignKey('Sites', on_delete=models.PROTECT)
     text = models.TextField()
     summary = models.CharField(max_length=180)
-    tag = models.ForeignKey('Categorys',on_delete=models.CASCADE)
+    tag = models.ForeignKey('Categorys',on_delete=models.PROTECT)
     favorite = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
     def  __str__(self):
         return self.title
 
 class settingUser(models.Model):
-    category = models.ForeignKey('Categorys', on_delete=models.CASCADE)
-    Site = models.ForeignKey('Sites', on_delete=models.CASCADE)
-    User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    category = models.ForeignKey('Categorys', on_delete=models.PROTECT)
+    Site = models.ForeignKey('Sites', on_delete=models.PROTECT)
+    User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     history = models.ManyToManyField('Page')
 
     def __str__(self):

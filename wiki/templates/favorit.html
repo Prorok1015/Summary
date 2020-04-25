@@ -1,13 +1,12 @@
 {% extends 'base.html' %}   
 {% load static %}
 {% block content %}
-<div class="hipanel"> <div class="back">Избранное</div>
-<div class="userp">
-{% if user.is_authenticated %}
-              <li>Пользователь: {{ user.get_username }}</li>
-              <li><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>   
-        {% else %}
-              <li><a href="{% url 'login'%}?next={{request.path}}">Войти</a></li>   
-        {% endif %}
-</div></div>
+      {% for page in pages %}
+      <div class="page">
+            <img src="{% static 'img/Star2.png'%}" class="favorit" alt="{{ page.title }}"/>
+            <div class="title">{{ page.title }}</div>
+            <div class="summary">{{page.summary}}...</div> 
+      </div>
+
+      {% endfor %}
 {%endblock%}
