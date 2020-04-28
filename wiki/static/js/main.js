@@ -72,7 +72,6 @@ for (let i = 0; i!=container.children.length; i++)
     let page = container.children[i];
     if(page.classList.contains('page'))
     {
-        setTimeout(10000);
         let image = page.querySelector('.favorite');
         $.ajax({
                url: '/add_favorite/',

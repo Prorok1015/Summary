@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wiki',
     'django.contrib.admin',
+    "django_cron",
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Django-cron apps
+CRON_CLASSES = [
+    "scrpt.PageAlgoritm.Algoritm",
+]

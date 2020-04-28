@@ -52,6 +52,6 @@ class settingUser(models.Model):
     User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     Time_to_new_page = models.CharField(max_length=2, choices=TO_TIME, default=One_day)
     history = models.ManyToManyField('Page')
-
+    
     def __str__(self):
         return "settings: " + self.User.username 
