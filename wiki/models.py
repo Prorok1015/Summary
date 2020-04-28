@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from enum import Enum
 import wikipediaapi
 
 
@@ -12,7 +13,7 @@ class Categorys(models.Model):
         return self.CategoryName
 
     def __str__(self):
-        return self.CategoryName + " --- " + str(self.Status)
+        return self.CategoryName
 
 class Sites(models.Model):
     SiteName = models.TextField()
@@ -28,13 +29,28 @@ class Page(models.Model):
     tag = models.ForeignKey('Categorys',on_delete=models.PROTECT)
     favorite = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
+    def existUser(self, username):
+        return self.favorite.filter(username = username).exists()
+         
+
     def  __str__(self):
         return self.title
 
-class settingUser(models.Model):
-    category = models.ForeignKey('Categorys', on_delete=models.PROTECT)
-    Site = models.ForeignKey('Sites', on_delete=models.PROTECT)
-    User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+class settingUser(models.Model):   
+    One_hour = '1 '
+    Two_hour = '2 '
+    Six_hour = '3 '
+    One_day  = '24'
+    TO_TIME = [
+        (One_hour, 'Каждый час'),
+        (Two_hour, 'Каждые два часа'),
+        (Six_hour, 'Каждые шесть часов'),
+        (One_day, 'Каждый день'),
+    ]
+    category = models.ForeignKey('Categorys', on_delete=models.CASCADE)
+    Site = models.ForeignKey('Sites', on_delete=models.CASCADE)
+    User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    Time_to_new_page = models.CharField(max_length=2, choices=TO_TIME, default=One_day)
     history = models.ManyToManyField('Page')
 
     def __str__(self):

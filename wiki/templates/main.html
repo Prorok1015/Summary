@@ -3,13 +3,14 @@
 
 {% block content %}
         
-        {% for page in pages %}
-          <div class="page">
-                <img src="{% static 'img/Star2.png'%}" class="favorit" alt="{{ page.title }}"/>
-                <div class="title">{{ page.title }}</div>
-                <div class="summary">{{page.summary}}...</div> 
-          </div>
-          
+        {% for page in pages %}         
+            <div class="page">
+                  <img src="{% static 'img/Star2.png'%}" class="favorite" alt="{{ page.title }}"/>
+                  <div class="title">{{ page.title }}</div>
+                  <div class="summary">{{page.summary}}...</div> 
+            </div>            
+          {% empty %}
+          <p>У вас пока нет ничего</p>
         {% endfor %}
             
 {%endblock%}

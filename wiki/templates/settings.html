@@ -1,5 +1,38 @@
 {% extends 'base.html' %}   
 {% load static %}
 {% block content %}
+        
+            
 
+            {% if result %}
+            <div class="alert-secces">
+                Настройки успешно обновлены
+            </div >
+            {% endif %}
+            
+            <div class="settingConteiner"> 
+            <form method="POST" class="settings">{% csrf_token %}
+                {% for field in form %}
+
+                    {% if field.errors  %}
+                        <div class="alert-error">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                    <div class = "settings">
+                        {% if field.label != "Time to new page" %}
+                        <input type="text" placeholder="{{ field.label }}" class="searchBox" id="searchBox{% cycle '1' '2' %}" style="background-image: url('{% static 'img/search.png' %}')"><br>
+                        {% endif %}
+                        <span class="custom-dropdown big"> 
+                            {{ field }} 
+                         </span>
+                    </div>
+                    
+                {% endfor %}
+            
+            <button type="submit" class="button-save">Сохранить</button>
+            </form>
+            </div>
+        
+        <script src="{% static 'js/search.js' %}" defer></script>
 {%endblock%}
