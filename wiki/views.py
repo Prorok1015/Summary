@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 import json
-from wiki.models import Page, settingUser, Categorys, Sites
+from wiki.models import Page, settingUser, Categorys, Sites, PageStatmant
 from wiki.forms import settingsForm, MyUser
 
 class MyRegisterFormView(FormView):
@@ -34,7 +34,7 @@ def main(request):
             Usersettings = settingUser(User=request.user, category=cat, Site=site)
             Usersettings.save()
 
-    pages = Page.objects.all()[:10]
+    pages = PageStatmant.objects.filter(User = request.user)
 
     return render(request, 'main.html', {'pages': pages, 'titlepanel': "Главная"})
 
@@ -44,20 +44,17 @@ def favorit(request):
     User = request.user
 
     if User.page_set.count() > 0:
-
-        pages = Page.objects.filter(favorite = request.user)
-        
+        pages = Page.objects.filter(favorite = request.user)       
     else:
         pages = []
 
     return render(request, 'favorit.html', {'pages': pages,'titlepanel': "Избранное"})
 
 
-
 @login_required
 def history(request):
     if settingUser.objects.filter(User = request.user).exists():
-            pages = settingUser.objects.get(User = request.user).history.all()[:10]
+            pages = settingUser.objects.get(User = request.user).history.all()
     else:
             pages = []
     return render(request, 'history.html', {'pages': pages, 'titlepanel': "История"})
@@ -75,23 +72,28 @@ class settingsView(View):
         return render(request, 'settings.html', {'titlepanel': "Настройки", 'form': form, 'result': False})
 
     def post(self, request):
-        print(request.POST)
+
         data = {
             'category' : request.POST.get('category'),
             'Site' : request.POST.get('Site'),
             'User' : request.user,
             'Time_to_new_page': request.POST.get('Time_to_new_page')
         }
+
         User = request.user
         instance = get_object_or_404(settingUser, User=User)
+
         form = settingsForm(data, instance=instance)
         result = False
+
         if form.is_valid():
             form.save()
             result = True
+
         form.fields['category'].empty_label = None
         form.fields['Site'].empty_label = None
         form.fields['Time_to_new_page'].empty_label = None
+
         return render(request, 'settings.html', {'titlepanel': "Настройки", 'form': form, 'result': result})
 
 
@@ -100,7 +102,7 @@ class settingsView(View):
 def ajax_favorite(request):
 
     if request.is_ajax():
-
+        print(request.POST)
         if 'True' == request.POST.get('query'):
 
             title = request.POST.get('id')
@@ -110,11 +112,12 @@ def ajax_favorite(request):
             if not User.page_set.filter(title = title).exists():   
 
                 page = Page.objects.get(title = title)
-                page.favorite.add(User)
+                page[0].favorite.add(User)
                 page.save()
             else:
 
-                Page.objects.get(title = title).favorite.remove(User)  
+                page = Page.objects.get(title = title)  
+                page.favorite.remove(User)
                 result = False
 
         else:
@@ -127,7 +130,7 @@ def ajax_favorite(request):
 
 @login_required
 def ajax_history(request):
-
+    print(request.POST)
     User = request.user
     title = request.POST.get('id')
     page = Page.objects.get(title = title)

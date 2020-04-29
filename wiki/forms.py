@@ -14,8 +14,3 @@ class settingsForm(forms.ModelForm):
         model = settingUser
         fields = ['category', 'Site', 'Time_to_new_page']
 
-   # def __init__(self, *args, **kwargs):
-    #    super().__init__(*args, **kwargs)
-    #    self.fields['name'].widget.attrs.update({'class': 'special'})
-    #    self.fields['comment'].widget.attrs.update(size='40')
-

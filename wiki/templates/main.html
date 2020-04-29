@@ -3,11 +3,11 @@
 
 {% block content %}
         
-        {% for page in pages %}         
+        {% for user in pages %}         
             <div class="page">
-                  <img src="{% static 'img/Star2.png'%}" class="favorite" alt="{{ page.title }}"/>
-                  <div class="title">{{ page.title }}</div>
-                  <div class="summary">{{page.summary}}...</div> 
+                  <img src="{% static 'img/Star2.png'%}" class="favorite" alt="{{ user.Pages.title }}"/>
+                  <div class="title">{{ user.Pages.title }}</div>
+                  <div class="summary">{{user.Pages.summary}}...</div> 
             </div>            
           {% empty %}
           <p>У вас пока нет ничего</p>
