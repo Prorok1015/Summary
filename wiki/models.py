@@ -35,24 +35,21 @@ class Page(models.Model):
     def  __str__(self):
         return self.title
 
-def randomPage():
-    count_page = Page.objects.all().count()
+def randomPage(Category, Site):
+    pages = Page.objects.filter(tag = Category, url = Site)
+    count_page = pages.count()
     random_index = int(random.random()*count_page)
-    if Page.objects.filter(pk = random_index).exists():
-        page = Page.objects.get(pk = random_index)
-        return page
-    else:
-        return None
+    return pages[random_index]
 
 def randomUnicalPage(User):
     Page_unikal = False
+    category = User.settinguser_set.category
+    site = User.settinguser_set.Site
     while(not Page_unikal):
-        random_page = randomPage()
-        if random_page != None:
-            Page_unikal = not settingUser.objects.get(User = User).history.filter(pk = random_page.pk ).exists()
-            print("1: " + str(Page_unikal))
-            Page_unikal = not Page.objects.get(pk = random_page.pk).favorite.filter(pk = User.pk).exists() 
-            print("2: " + str(Page_unikal))
+        random_page = randomPage(category, site)
+        Page_unikal = not settingUser.objects.get(User = User).history.filter(pk = random_page.pk ).exists()
+        Page_unikal = not Page.objects.get(pk = random_page.pk).favorite.filter(pk = User.pk).exists() 
+        Page_unikal = not PageStatmant.objects.filter(Pages = random_page, User = User).exists()
 
     page = random_page
     return page

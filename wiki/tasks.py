@@ -6,6 +6,6 @@ from script.PageAlgoritm import Algoritm
 do = Algoritm()
 
 @shared_task
-def test_task():
+def add_unical_pages_for_users():
     do.do()
 

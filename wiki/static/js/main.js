@@ -60,6 +60,7 @@ $.ajax(
              let div = document.createElement('div');
              div.innerHTML = data.notifications_list
              container.appendChild(div);
+             $(document).scrollTop(0);
           }
     });
 }

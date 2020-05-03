@@ -34,15 +34,14 @@ def main(request):
             Usersettings = settingUser(User=request.user, category=cat, Site=site)
             Usersettings.save()
 
-    pages = PageStatmant.objects.filter(User = request.user)
+    settings = PageStatmant.objects.filter(User = request.user)
 
-    return render(request, 'main.html', {'pages': pages, 'titlepanel': "Главная"})
+    return render(request, 'main.html', {'setting': settings, 'titlepanel': "Главная"})
 
 @login_required
 def favorit(request):
-
+    
     User = request.user
-
     if User.page_set.count() > 0:
         pages = Page.objects.filter(favorite = request.user)       
     else:
@@ -61,15 +60,18 @@ def history(request):
 
 
 class settingsView(View):
-    def get(self, request):            
-        form = settingsForm()
-        form.fields['category'].initial = request.user.settinguser_set.get(User = request.user).category
-        form.fields['category'].empty_label = None
-        form.fields['Site'].initial = request.user.settinguser_set.get(User = request.user).Site
-        form.fields['Site'].empty_label = None
-        form.fields['Time_to_new_page'].initial = request.user.settinguser_set.get(User=request.user).Time_to_new_page
-        form.fields['Time_to_new_page'].empty_label = None
-        return render(request, 'settings.html', {'titlepanel': "Настройки", 'form': form, 'result': False})
+    def get(self, request): 
+        if request.user.is_authenticated:
+            form = settingsForm()
+            form.fields['category'].initial = request.user.settinguser_set.get(User = request.user).category
+            form.fields['category'].empty_label = None
+            form.fields['Site'].initial = request.user.settinguser_set.get(User = request.user).Site
+            form.fields['Site'].empty_label = None
+            form.fields['Time_to_new_page'].initial = request.user.settinguser_set.get(User=request.user).Time_to_new_page
+            form.fields['Time_to_new_page'].empty_label = None
+            return render(request, 'settings.html', {'titlepanel': "Настройки", 'form': form, 'result': False})
+        else:
+            return redirect('login')
 
     def post(self, request):
 
@@ -112,7 +114,7 @@ def ajax_favorite(request):
             if not User.page_set.filter(title = title).exists():   
 
                 page = Page.objects.get(title = title)
-                page[0].favorite.add(User)
+                page.favorite.add(User)
                 page.save()
             else:
 

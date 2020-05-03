@@ -3,14 +3,20 @@
 
 {% block content %}
         
-        {% for user in pages %}         
-            <div class="page">
+        {% for user in setting %}         
+        <div class="page">
+            <div class="card w-100 text-center">
+              <img src="{% static 'img/noimage.png' %}" class="card-img-top" alt="...">
+              <div class="card-body">
                   <img src="{% static 'img/Star2.png'%}" class="favorite" alt="{{ user.Pages.title }}"/>
                   <div class="title">{{ user.Pages.title }}</div>
                   <div class="summary">{{user.Pages.summary}}...</div> 
-            </div>            
+              </div>
+          
+            </div>     
+          </div>      
           {% empty %}
-          <p>У вас пока нет ничего</p>
+          <p class="alert alert-warning bt" style="margin: 2em; margin-top:30%;">У вас пока нет ничего</p>
         {% endfor %}
             
 {%endblock%}

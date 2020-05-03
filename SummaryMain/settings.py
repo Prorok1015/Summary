@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+from celery.schedules import crontab
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -129,9 +129,10 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
+
 CELERY_BEAT_SCHEDULE = {
-    'test-task': {
-        'task': 'wiki.tasks.test_task',
-        'schedule': 5.0,
+    'add_unical_pages_for_users': {
+        'task': 'wiki.tasks.add_unical_pages_for_users',
+        'schedule': crontab(minute = 0, hour='*/1'),
     },
 }

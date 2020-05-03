@@ -1,12 +1,18 @@
 {% extends 'base.html' %}   
 {% load static %}
 {% block content %}
-      {% for page in pages %}
-      <div class="page">
-            <img src="" class="favorite" alt="{{ page.title }}"/>
-            <div class="title">{{ page.title }}</div>
-            <div class="summary">{{page.summary}}...</div> 
-      </div>
-
+      {% for page in pages %}        
+            <div class="page">
+                  <div class="card w-100 text-center">
+                        <img src="{% static 'img/noimage.png' %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <img src="{% static 'img/Star2.png'%}" class="favorite" alt="{{ page.title }}"/>
+                        <div class="title">{{ page.title }}</div>
+                        <div class="summary">{{ page.summary }}...</div> 
+                        </div>
+                  </div>     
+            </div>      
+      {% empty %}
+      <p>У вас пока нет ничего</p>
       {% endfor %}
 {%endblock%}

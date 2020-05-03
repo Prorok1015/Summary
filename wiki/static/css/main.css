@@ -1,18 +1,17 @@
-ul.nav{
+ul.nav1{
     margin-left: 0px;
     padding-left: 10px;
     list-style: none;
-    position: fixed;
-    bottom: -18px;    
+    position: fixed;   
     width: 100%;
     
     background-color: black;
 }
-.nav li { 
+.nav1 li { 
     display: inline; 
      
 }
-ul.nav a {
+ul.nav1 a {
     display: inline-block;
     width: 5em;
     padding:5px;
@@ -25,11 +24,11 @@ ul.nav a {
     color: #333;
     text-align: center;
 }
-ul.nav a:hover{
+ul.nav1 a:hover{
     background-color: #333;
     color: #f4f4f4;
 }
-ul.nav a:focus{
+ul.nav1 a:focus{
 
     color: white;
     background-color: black;
@@ -39,7 +38,7 @@ html, body {
     height: 100%;
     padding: 0px;
     margin: 0px;
-    
+ 
     }
 .hipanel{
     border: 1px solid black;
@@ -48,12 +47,12 @@ html, body {
     padding: 1px;
     
 }
-.hipanel .userp{
+.userp{
     position: relative;
     float: right;
     display: block;
     list-style: none;
-    padding-right: 40px;
+    padding-right: 2em;
 }
 .back{
     display: inline-block;
@@ -68,11 +67,22 @@ html, body {
     border-radius: 3px;
     background-color: black;
 }
-.main{
-    min-width: 100%;
-    min-height: 100%;
-    padding-top: 10px;
-    padding-bottom: 60px;
-    position: relative;
-    background-color: rgba(143, 255, 240, 0.651);
+#main{
+    margin-bottom: 10em;
+    margin-top: 25%;
+    
+}
+
+.nav-static li{
+    margin: 0px; 
+    display: inline-block;
+    font-size: 40px;
+    padding: 0px;
+}
+.nav-static a{
+    font-size: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    
 }

@@ -4,13 +4,14 @@
         
             
 
-            {% if result %}
-            <div class="alert-secces">
-                Настройки успешно обновлены
-            </div >
-            {% endif %}
+            
             
             <div class="settingConteiner"> 
+                {% if result %}
+                <div class="alert-secces">
+                    Настройки успешно обновлены
+                </div >
+                {% endif %}
             <form method="POST" class="settings">{% csrf_token %}
                 {% for field in form %}
 
@@ -30,7 +31,7 @@
                     
                 {% endfor %}
             
-            <button type="submit" class="button-save">Сохранить</button>
+            <button type="submit" class="btn-success btn-lg button-save">Сохранить</button>
             </form>
             </div>
         

@@ -5,18 +5,22 @@
    <head>
       <meta charset="utf-8" />
       <title>Summary</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
       <link rel="stylesheet" href="{% static 'css/main.css'%}">
       <link rel="stylesheet" href="{% static 'css/page.css'%}">
       <link rel="stylesheet" href="{% static 'css/search.css'%}">
-      <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}">
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>     
+      <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}">    
       <style>
-         .page .favorite{
+         .favorite{
             position: relative;
             float: right;
             display: block;
-            width: 30px;
-            height: 30px;
+            width: 60px;
+            height: 60px;
             padding: 0px;
             margin-right: 10px;
             margin-top: 10px;
@@ -25,19 +29,25 @@
       </style>
    </head>
    <body>
-      <div class="hipanel"> <div class="back">{{titlepanel}}</div> 
-            <div class="userp">
+      <nav class="navbar navbar-light bg-light fixed-top" style=" height: 15%;" >
+         <a class="navbar-brand bt" href="{% url 'main' %}">
+           <img src="{% static 'img/favicon.ico' %}" width="80" height="80" class="d-inline-block align-top" alt="" >
+           {{titlepanel}}
+         </a>
+            <div class="userp mt">
+               <ul class="nav navbar-nav navbar-right">
                   {% if user.is_authenticated %}
-                        <li>Пользователь: {{ user.get_username }}</li>
-                        <li><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>   
+                        <li class="mt" style="margin-bottom: .5em;">{{ user.get_username }}</li>
+                        <li><a class="btn btn-primary mt" href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>   
                   {% else %}
-                        <li><a href="{% url 'login'%}?next={{request.path}}">Войти</a></li>   
+                        <li><a class="btn btn-primary big" href="{% url 'login'%}?next={{request.path}}"><span class="glyphicon glyphicon-log-in"></span>Войти</a></li>   
                   {% endif %} 
+               </ul>
             </div>
       </div>
-      <div class="main" id="main">
-         {% block content %}
-            
+   </nav>
+      <div class="conteiner" id="main">
+         {% block content %}   
          {% endblock %}
       </div>   
       <script>
@@ -45,15 +55,22 @@
          "{% static 'img/Star1.png'%}",
          "{% static 'img/Star2.png'%}",
          "{% static 'img/search.png'%}",
+         "{% static 'img/noimage.png' %}",
          ];
       </script>
       <script src="{% static 'js/preloadimage.js' %}"></script>
       <script src="{% static 'js/main.js' %}" defer></script>
-      <ul class="nav">
-          <li><a href="{% url 'main'%}">Главная</a></li>
-          <li><a href="{% url 'favorit'%}">Избранное</a></li>
-          <li><a href="{% url 'history'%}">История</a></li>
-          <li><a href="{% url 'settings'%}">Настройки</a></li>
-      </ul>
+      <script src="{% static 'js/text-page.js' %}" defer></script>
+
+      <nav class="navbar navbar-light bg-dark fixed-bottom nav-justified" style="height: 10%;">
+         <div style="margin: 0px; padding: 0px; font-size: 30px;">
+            <ul class="navbar-nav nav-static" style="display: inline-block;">
+               <li class="nav-item" >        <a class="nav-link active" style="color: white;" href="{% url 'main'%}">Главная</a></li>
+               <li class="nav-item" >       <a class="nav-link active" style="color: white;"href="{% url 'favorit'%}">Избранное</a></li>
+               <li class="nav-item" >       <a class="nav-link active" style="color: white;"href="{% url 'history'%}">История</a></li>
+               <li class="nav-item" >       <a class="nav-link active" style="color: white;"href="{% url 'settings'%}">Настройки</a></li>
+            </ul>
+         </div>
+      </nav>
    </body>
 </html>
