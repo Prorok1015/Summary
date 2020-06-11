@@ -35,7 +35,14 @@ def main(request):
             Usersettings.save()
 
     settings = PageStatmant.objects.filter(User = request.user)
-
+    if request.is_ajax():
+        return HttpResponse(json.dumps(
+            {"page": render_to_string('main.html', 
+                {
+                'setting': settings,
+                'titlepanel': "Главная",
+                })
+            }), content_type="application/json")
     return render(request, 'main.html', {'setting': settings, 'titlepanel': "Главная"})
 
 @login_required

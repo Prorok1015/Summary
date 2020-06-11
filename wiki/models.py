@@ -43,8 +43,8 @@ def randomPage(Category, Site):
 
 def randomUnicalPage(User):
     Page_unikal = False
-    category = User.settinguser_set.category
-    site = User.settinguser_set.Site
+    category = User.settinguser_set.get(User=User).category
+    site = User.settinguser_set.get(User=User).Site
     while(not Page_unikal):
         random_page = randomPage(category, site)
         Page_unikal = not settingUser.objects.get(User = User).history.filter(pk = random_page.pk ).exists()

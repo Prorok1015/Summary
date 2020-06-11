@@ -3,3 +3,4 @@ Pillow
 wikipedia-api
 celery 
 redis
+redislite  

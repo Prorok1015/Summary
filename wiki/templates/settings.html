@@ -20,11 +20,11 @@
                             {{ field.errors }}
                         </div>
                     {% endif %}
-                    <div class = "settings">
+                    <div >
                         {% if field.label != "Time to new page" %}
                         <input type="text" placeholder="{{ field.label }}" class="searchBox" id="searchBox{% cycle '1' '2' %}" style="background-image: url('{% static 'img/search.png' %}')"><br>
                         {% endif %}
-                        <span class="custom-dropdown big"> 
+                        <span class="custom-dropdown bt"> 
                             {{ field }} 
                          </span>
                     </div>

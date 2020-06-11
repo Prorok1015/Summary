@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+from redislite import Redis
 from celery.schedules import crontab
 import os
 
@@ -124,7 +125,17 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #Celery-Redis settings
-CELERY_BROKER_URL = 'redis://localhost:6379'
+#CELERY_BROKER_URL = 'redis://localhost:6379'
+
+
+# Create a Redis instance using redislite
+REDIS_DB_PATH = os.path.join('/tmp/redis.rdb')
+rdb = Redis(REDIS_DB_PATH)
+REDIS_SOCKET_PATH = 'redis+socket://%s' % (rdb.socket_file, )
+
+# Use redislite for the Celery broker
+CELERY_BROKER_URL = REDIS_SOCKET_PATH
+
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -133,6 +144,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_BEAT_SCHEDULE = {
     'add_unical_pages_for_users': {
         'task': 'wiki.tasks.add_unical_pages_for_users',
-        'schedule': crontab(minute = 0, hour='*/1'),
+        'schedule': 10.0 #crontab(minute = 0, hour='*/1'),
     },
 }

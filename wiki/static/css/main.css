@@ -49,10 +49,8 @@ html, body {
 }
 .userp{
     position: relative;
-    float: right;
-    display: block;
+    display: inline-block;
     list-style: none;
-    padding-right: 2em;
 }
 .back{
     display: inline-block;
@@ -76,11 +74,9 @@ html, body {
 .nav-static li{
     margin: 0px; 
     display: inline-block;
-    font-size: 40px;
     padding: 0px;
 }
 .nav-static a{
-    font-size: 50px;
     padding-left: 10px;
     padding-right: 10px;
     margin-left: 10px;

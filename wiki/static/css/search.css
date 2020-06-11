@@ -3,21 +3,22 @@
   box-sizing: border-box;
   background-position: left;
   background-repeat: no-repeat;
-  font-size: 50px;
-  padding: 14px 20px 12px 50px;
+  font-size: 15px;
+  padding: 15px 15px 15px 15px;
   border: 1px solid rgb(75, 75, 189);
-  background-size: 45px 45px; 
-  
+  background-size: 15px 15px; 
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .searchBox:focus {outline: 3px solid #ddd;}
 .settingConteiner{
     margin-left: auto;
     margin-right: auto;
-    width: 45em;
+    width: 100%;
     margin-top: 30%;
 }
 .settings {
-    font-size: 50px;
+    font-size: 15px;
     padding: 10px;
     margin-bottom: 10px;
 }
@@ -25,12 +26,12 @@
     background-color: lawngreen;
     margin-left: auto;
     margin-right: auto;
-    width: 300px;
-    padding: 12px 20px;
-    border-radius: 30px;
+    width: 100%;
+    border-radius: 15px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
+    font-size: 15px;
     box-shadow: 0 16px 32px 0 rgba(0,40,120,.35);
+    text-align: center;
 }
 .alert-error{
     background-color: tomato;
@@ -44,11 +45,8 @@
     box-shadow: 0 16px 32px 0 rgba(0,40,120,.35);
 }
 .button-save{
-    font-size: 50px;
     width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: .7em;
+    text-align: center;
 }
 
 .custom-dropdown {
@@ -85,7 +83,7 @@
   
   .custom-dropdown::after { /*  Custom dropdown arrow */
     content: "\25BC";
-    height: 1em;
+    height: 20px;
     font-size: .625em;
     line-height: 1;
     right: 1.2em;
@@ -122,8 +120,8 @@
   }
 
   .bt{
-    font-size: 50px;
+    font-size: 15px;
   }
   .mt{
-    font-size: 40px;
+    font-size: 10px;
   }

@@ -1,36 +1,35 @@
 
 .page{
     padding: 1px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     position: relative;
     outline: none;
     width: 100%;
 }
 .title{
-    padding-top: 40px;
-    padding-left: 40px;
-    font-size: 50px;
-    text-align: center;
+    padding-right: 5px;
+    font-size: 15px;
+    text-align: left;
 }
 .summary{
     text-align: justify;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
     padding-top: 20px;
-    font-size: 50px;
+    font-size: 15px;
 }
 
 .title-page{
 
     width: 100%;
-    padding: 1em;
+ 
     position: relative;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     line-height: 60px;
     color: black;
-    font-size: 50px;
+    font-size: 15px;
     font-weight: bold;
     transition: 2s;
     text-shadow: 0px 0px 0px #558B2F;
@@ -40,7 +39,7 @@
 }
 
 .text{
-    padding: 2em;
-    font-size: 2em;
+    padding: 5%;
+    font-size: 15px;
     text-align: justify;
 }
