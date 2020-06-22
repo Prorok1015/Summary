@@ -10,4 +10,5 @@ urlpatterns = [
     path('settings/', views.settingsView.as_view(), name='settings'),
     path('add_favorite/', views.ajax_favorite, name='addfavorite'),
     path('add_history/', views.ajax_history, name='addhistory'),
+    path('cron_task/', views.cron_task, name='cron')
 ]

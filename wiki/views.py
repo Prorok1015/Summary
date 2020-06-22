@@ -8,6 +8,9 @@ from django.template.loader import render_to_string
 import json
 from wiki.models import Page, settingUser, Categorys, Sites, PageStatmant
 from wiki.forms import settingsForm, MyUser
+from script.PageAlgoritm import Algoritm
+
+task = Algoritm() 
 
 class MyRegisterFormView(FormView):
 
@@ -161,4 +164,6 @@ def ajax_history(request):
         
        
         
-    
+def cron_task(request):
+    task.do()
+    return HttpResponse(status=200)

@@ -1,6 +1,5 @@
 Django~=2.2.4
 Pillow
-wikipedia-api
 celery 
 redis
 redislite  
